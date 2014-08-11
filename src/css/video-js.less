@@ -1,6 +1,6 @@
 /*!
 Video.js Default Styles (http://videojs.com)
-Version GENERATED_AT_BUILD
+Version 4.7.0
 Create your own skin at http://designer.videojs.com
 */
 
@@ -19,7 +19,7 @@ Create your own skin at http://designer.videojs.com
 
 // The default color of control backgrounds is mostly black but with a little
 // bit of blue so it can still be seen on all black video frames, which are
-// common.
+// common.http://designer.videojs.com/
 @control-bg-color: #07141E; // e.g. rgb(255, 255, 255) or #ffffff
 @control-bg-alpha: 0.7; // 1.0 = 100% opacity, 0.0 = 0% opacity
 
@@ -37,8 +37,8 @@ Create your own skin at http://designer.videojs.com
 // To center it set the align values to center and middle. The typical location
 // of the button is the center, but there is trend towards moving it to a corner
 // where it gets out of the way of valuable content in the poster image.
-@big-play-align: left; // left, center, or right
-@big-play-vertical-align: top; // top, middle, or bottom
+@big-play-align: center; // left, center, or right
+@big-play-vertical-align: middle; // top, middle, or bottom
 // The button colors match the control colors by default but you can customize
 // them by replace the variables (@control-bg-color) with your own color values.
 @big-play-bg-color: @control-bg-color;
@@ -52,9 +52,9 @@ Create your own skin at http://designer.videojs.com
 // the following values to 2em would equal 60px. 2 * font-size
 @big-play-margin: 0.5em;
 @big-play-width: 4em;
-@big-play-height: 2.6em;
-@big-play-border-radius: 0.8em;
-@big-play-border-width: 0.1em;
+@big-play-height: 2em;
+@big-play-border-radius: 0.0em;
+@big-play-border-width: 0.0em;
 @big-play-border-color: #3b4249;
 
 /* SKIN
@@ -162,16 +162,16 @@ The default control bar that is a container for most of the controls.
   left: 0;
   right: 0;
   /* Height includes any margin you want above or below control items *///
-  height: 3.0em;
+  height: 3em;
 
   .background-color-with-alpha(@control-bg-color, @control-bg-alpha);
 }
 
 /* Show the control bar only once the video has started playing */
 .vjs-default-skin.vjs-has-started .vjs-control-bar {
-  display: block;
+  display: none;
   /* Visibility needed to make sure things hide in older browsers too. */
-  visibility: visible;
+  visibility: hidden;
   opacity: 1;
 
   @trans: visibility 0.1s, opacity 0.1s; // Var needed because of comma
@@ -180,7 +180,7 @@ The default control bar that is a container for most of the controls.
 
 /* Hide the control bar when the video is playing and the user is inactive  */
 .vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
-  display: block;
+  display: none;
   visibility: hidden;
   opacity: 0;
 
@@ -254,113 +254,8 @@ fonts to show/hide properly.
   .hide-visually;
 }
 
-/* Play/Pause
---------------------------------------------------------------------------------
-*/
-.vjs-default-skin .vjs-play-control {
-  width: 5em;
-  cursor: pointer;
-}
-.vjs-default-skin .vjs-play-control:before {
-  content: @play-icon;
-}
-.vjs-default-skin.vjs-playing .vjs-play-control:before {
-  content: @pause-icon;
-}
 
-/* Playback toggle
---------------------------------------------------------------------------------
-*/
-.vjs-default-skin .vjs-playback-rate .vjs-playback-rate-value {
-  font-size: 1.5em;
-  line-height: 2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
 
-.vjs-default-skin .vjs-playback-rate.vjs-menu-button .vjs-menu .vjs-menu-content {
-  width: 4em;
-  left: -2em;
-  list-style: none;
-}
-
-/* Volume/Mute
--------------------------------------------------------------------------------- */
-.vjs-default-skin .vjs-mute-control,
-.vjs-default-skin .vjs-volume-menu-button {
-  cursor: pointer;
-  float: right;
-}
-.vjs-default-skin .vjs-mute-control:before,
-.vjs-default-skin .vjs-volume-menu-button:before {
-  content: @volume-high-icon;
-}
-.vjs-default-skin .vjs-mute-control.vjs-vol-0:before,
-.vjs-default-skin .vjs-volume-menu-button.vjs-vol-0:before {
-  content: @volume-muted-icon;
-}
-.vjs-default-skin .vjs-mute-control.vjs-vol-1:before,
-.vjs-default-skin .vjs-volume-menu-button.vjs-vol-1:before {
-  content: @volume-low-icon;
-}
-.vjs-default-skin .vjs-mute-control.vjs-vol-2:before,
-.vjs-default-skin .vjs-volume-menu-button.vjs-vol-2:before {
-  content: @volume-mid-icon;
-}
-
-.vjs-default-skin .vjs-volume-control {
-  width: 5em;
-  float: right;
-}
-.vjs-default-skin .vjs-volume-bar {
-  width: 5em;
-  height: 0.6em;
-  margin: 1.1em auto 0;
-}
-
-.vjs-default-skin .vjs-volume-menu-button .vjs-menu-content {
-  height: 2.9em;
-}
-
-.vjs-default-skin .vjs-volume-level {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 0.5em;
-  /* assuming volume starts at 1.0 */
-  width: 100%;
-
-  background: @slider-bar-color
-    url(@slider-bar-pattern)
-    -50% 0 repeat;
-}
-.vjs-default-skin .vjs-volume-bar .vjs-volume-handle {
-  width: 0.5em;
-  height: 0.5em;
-  /* Assumes volume starts at 1.0. If you change the size of the
-     handle relative to the volume bar, you'll need to update this value
-     too. */
-  left: 4.5em;
-}
-
-.vjs-default-skin .vjs-volume-handle:before {
-  font-size: 0.9em;
-  top: -0.2em;
-  left: -0.2em;
-
-  width: 1em;
-  height: 1em;
-}
-
-.vjs-default-skin .vjs-volume-menu-button .vjs-menu .vjs-menu-content {
-  width: 6em;
-  left: -4em;
-}
 
 /* Progress
 --------------------------------------------------------------------------------
@@ -480,22 +375,6 @@ fonts to show/hide properly.
 .vjs-default-skin .vjs-remaining-time { display: none; float: left; }
 .vjs-time-divider { float: left; line-height: 3em; }
 
-/* Fullscreen
---------------------------------------------------------------------------------
-*/
-.vjs-default-skin .vjs-fullscreen-control {
-  width: 3.8em;
-  cursor: pointer;
-  float: right;
-}
-.vjs-default-skin .vjs-fullscreen-control:before {
-  content: @fullscreen-enter-icon;
-}
-/* Switch to the exit icon when the player is in fullscreen */
-.vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control:before {
-  content: @fullscreen-exit-icon;
-}
-
 /* Big Play Button (play button at start)
 --------------------------------------------------------------------------------
 Positioning of the play button in the center or other corners can be done more
@@ -541,7 +420,7 @@ easily in the skin designer. http://designer.videojs.com/
 
 /* Hide if controls are disabled */
 .vjs-default-skin.vjs-controls-disabled .vjs-big-play-button {
-  display: none;
+  display: block;
 }
 /* Hide when video starts playing */
 .vjs-default-skin.vjs-has-started .vjs-big-play-button {
